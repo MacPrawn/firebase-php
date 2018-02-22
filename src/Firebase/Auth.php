@@ -138,6 +138,11 @@ class Auth
         $this->client->deleteUser($uid);
     }
 
+    public function verifyPassword(string $email, string $password): Token
+    {
+        return $this->client->verifyPassword($email, $password);
+    }
+
     /**
      * @param string $uid
      */

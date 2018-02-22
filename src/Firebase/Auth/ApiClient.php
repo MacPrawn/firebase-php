@@ -132,6 +132,15 @@ class ApiClient
         ]);
     }
 
+    public function verifyPassword(string $email, string $password): ResponseInterface
+    {
+        return $this->request('verifyPassword', [
+            'email' => $email,
+            'password' => $password,
+            'returnSecureToken' => true,
+        ]);
+    }
+
     /**
      * @param string $idToken
      *

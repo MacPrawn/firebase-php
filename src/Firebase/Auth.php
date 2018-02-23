@@ -140,7 +140,11 @@ class Auth
 
     public function verifyPassword(string $email, string $password): Token
     {
-        return $this->client->verifyPassword($email, $password);
+        $response = $this->client->verifyPassword($email, $password);
+
+        $data = JSON::decode((string)$response->getBody(), true);
+
+        return $data;
     }
 
     /**
@@ -162,7 +166,7 @@ class Auth
         $this->client->sendPasswordResetEmail($email);
     }
 
-    public function createCustomToken($uid, array $claims = []): Token
+    public function createCustomToken($uid, array $claims = [])
     {
         return $this->tokenGenerator->createCustomToken($uid, $claims);
     }
